@@ -17,9 +17,9 @@ export default function Home() {
     setExpenses([...expenses, newExpense]);
     setNewExpense({
       name: '',
-      cost: 0,
+      cost: 0
     });
-  };
+  }
 
   return (
     <>
@@ -35,25 +35,29 @@ export default function Home() {
             {expenses.map((expense, index) => (
               <tr key={index}>
                 <td>{expense.name}</td>
-                <td>{expense.cost}</td>
+                <td>${expense.cost}</td>
               </tr>
             ))}
           </tbody>
         </table>
+
+        {/* Input forms */}
+        <input 
+          type="text"
+          placeholder="Expense name"
+          value={newExpense.name}
+          onChange={(e) => setNewExpense({...newExpense, name: e.target.value})}
+        />
+        
+        <input 
+          type="number"
+          placeholder="Cost"
+          value={newExpense.cost}
+          onChange={(e) => setNewExpense({...newExpense, cost: Number(e.target.value)})}
+        />
+        
+        <button onClick={addExpense}>Add Expense</button>
       </div>
-      <input
-        type='text'
-        value={newExpense.name}
-        placeholder='Enter a Name'
-        onChange={(e) => setNewExpense({ ...newExpense, name: e.target.value })}
-      ></input>
-      <input
-        type='number'
-        value={newExpense.cost}
-        placeholder='Enter a Cost'
-        onChange={(e) => setNewExpense({ ...newExpense, cost: Number(e.target.value )})}
-      ></input>
-      <button onClick={addExpense}>Add Expense</button>
     </>
   );
 }
